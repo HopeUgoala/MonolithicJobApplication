@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/jobs")
 public class JobController {
-    private JobService jobService;
+    JobService jobService;
 
 
     public JobController(JobService jobService) {
@@ -36,8 +36,7 @@ public class JobController {
         Job job = jobService.getJobById(id);
         if(job != null)
             return new ResponseEntity<>(job, HttpStatus.OK);
-        return new ResponseEntity<>(job, HttpStatus.NOT_FOUND);
-
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/{id}")
@@ -46,8 +45,8 @@ public class JobController {
         if(deleted)
             return new ResponseEntity<>("Deleted Sucessfully", HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<String> updateJobs(@PathVariable Long id, @RequestBody Job updatedJob){
         boolean updated = jobService.updateJobs(id, updatedJob);

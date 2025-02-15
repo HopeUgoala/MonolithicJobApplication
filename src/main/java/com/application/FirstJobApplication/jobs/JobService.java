@@ -13,5 +13,6 @@ public interface JobService {
     Job getJobById(Long id);
 
     boolean updateJobs(Long id, Job updatedJob);
+
 }
 
